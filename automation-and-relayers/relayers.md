@@ -47,11 +47,12 @@ You go from **paying for votes** to **getting paid to handle them**.
 
 ### vs veDelegate
 
-| Feature                   | veDelegate             | VeBetterDAO Auto-Voting |
-| ------------------------- | ---------------------- | ----------------------- |
-| X Allocation voting       | Yes                    | Yes                     |
-| Governance voting         | Yes (always "abstain") | No (manual only)        |
-| Compounding (B3TR → VOT3) | Auto                   | Manual                  |
-| Token custody             | Leaves wallet          | Stays in wallet         |
-| Centralization            | Single entity          | Many relayers           |
-| Cost to apps              | Apps pay veDelegate    | Apps earn fees          |
+| Feature                   | veDelegate                        | VeBetterDAO Auto-Voting |
+| ------------------------- | --------------------------------- | ----------------------- |
+| X Allocation voting       | Yes                               | Yes                     |
+| Governance voting         | Yes                               | No (manual only)        |
+| Compounding (B3TR → VOT3) | Auto                              | Manual                  |
+| Token custody             | Leaves wallet                     | Stays in wallet         |
+| Centralization            | Single entity                     | Many relayers           |
+| Cost to apps              | Apps may need to pay transactions | Apps earn fees          |
+
