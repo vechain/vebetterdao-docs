@@ -11,6 +11,7 @@
 * [Governance](vebetter/governance/README.md)
   * [How to apply for Grants ?](vebetter/governance/how-to-apply-for-grants.md)
 * [Voter Rewards](vebetter/voter-rewards.md)
+* [B3MO Quests](vebetter/b3mo-quests.md)
 * [Smart Contracts](vebetter/smart-contracts.md)
 * [Roles And Permissions](vebetter/roles-and-permissions.md)
 * [Trust Assumptions](vebetter/trust-assumptions.md)
