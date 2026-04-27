@@ -1,8 +1,6 @@
 # B3MO Quests
 
-## Community Quests
-
-B3MO's **Community Quests** allow users and apps to create challenges that drive participation across the VeBetter ecosystem. B3MO, the AI agent, manages everything, holding funds and tracking actions.
+**B3MO's Community Quests** allow users and apps to create challenges that drive participation across the VeBetter ecosystem. B3MO, the AI agent, manages everything, holding funds and tracking actions.
 
 The first release launches with two challenge types: **Sponsored** and **Bet**. Each type has different rules around visibility, win conditions, and participation limits.&#x20;
 
