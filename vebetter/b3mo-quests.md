@@ -4,6 +4,10 @@
 
 The first release launches with two challenge types: **Sponsored** and **Bet**. Each type has different rules around visibility, win conditions, and participation limits.&#x20;
 
+{% hint style="info" %}
+Developers can also create B3MO Quests directly through the `B3TRChallenges` contract. See [Create B3MO Quests from Contract](../developer-guides/create-b3mo-quests-from-contract.md).
+{% endhint %}
+
 ### Win Conditions
 
 Every challenge uses one of two win conditions, chosen by the creator at setup:
@@ -67,4 +71,3 @@ Bet challenges are **always private** and **always use Max Actions**. You can on
 * **Sponsored (Public):** Split Win only · No participant limit
 * **Sponsored (Private):** Max Actions (100 max) or Split Win (no limit)
 * **Bet (Private only):** Max Actions · Max 100 participants
-
