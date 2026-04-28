@@ -29,6 +29,7 @@
 * [Reward Metadata](developer-guides/reward-metadata.md)
 * [Security Considerations](developer-guides/security-considerations.md)
 * [AI Image Validation](developer-guides/ai-image-validation.md)
+* [Create B3MO Quests from Contract](developer-guides/create-b3mo-quests-from-contract.md)
 * [RuleBook for Apps](developer-guides/rulebook-for-apps.md)
 * [Submit Your App](developer-guides/submit-your-app.md)
 * [X2Earn Creators NFT](developer-guides/x2earn-creators-nft.md)
