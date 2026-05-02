@@ -8,6 +8,8 @@ Not everyone can follow every app and every proposal each round. Navigators prov
 
 This is different from auto-voting, which simply repeats past patterns. Navigators are expected to actively curate their votes, explain decisions, and submit reports. Citizens can compare different Navigators' philosophies and track records before choosing one.
 
+Citizens must maintain a valid VePassport (personhood) to have their navigator votes cast. If a citizen's passport is invalid at the round snapshot, their vote is skipped for that round and they will not earn rewards.
+
 ## Rewards Multipliers
 
 Alongside Navigators, VeBetterDAO introduces two rewards multipliers to incentivize active participation:

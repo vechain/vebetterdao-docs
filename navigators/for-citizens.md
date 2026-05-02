@@ -32,6 +32,15 @@ You can delegate to **one Navigator at a time**.
 * A **20% Navigator fee** is deducted automatically from rewards you earn through managed votes
 * Rewards are automatically claimed for you by relayers
 
+## Passport Requirement
+
+You must hold a valid **VePassport** (personhood) to have your navigator votes cast. Passport validity is checked at the **round snapshot** — the moment the round starts.
+
+* If your passport is **valid** at the snapshot: your navigator votes normally on your behalf
+* If your passport is **invalid** at the snapshot: your vote is **skipped** for that round and you will not earn rewards
+
+To maintain eligibility, keep performing sustainable actions through VeBetterDAO apps. If your passport lapses, re-establish it before the next round starts.
+
 ## Switching or Leaving
 
 * You can reduce delegation, fully undelegate, or switch to another Navigator
@@ -62,6 +71,10 @@ No. You must undelegate first.
 ### Can I switch Navigators?
 
 Yes. You can switch, and the change applies from the next round.
+
+### What happens if my VePassport is invalid?
+
+Your vote is skipped for that round and you earn no rewards. Other citizens delegated to the same Navigator are not affected. Regain a valid passport before the next round to resume participation.
 
 ### What if my Navigator stops participating?
 

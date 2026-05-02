@@ -72,10 +72,11 @@ Navigator setting preferences (`setAllocationPreferences`) also counts as their 
 Both allocation and governance `castNavigatorVote` functions include built-in skip logic:
 
 1. Navigator dead at snapshot: revert `NotDelegatedToNavigator`
-2. Navigator dead now (exited/deactivated after snapshot): skip immediately, reduce expected actions
-3. Navigator alive + preferences/decision set: vote normally
-4. Navigator alive + no preferences/decision + skip window reached (2 hours before deadline): skip
-5. Navigator alive + no preferences/decision + skip window not reached: revert (relayer retries later)
+2. Citizen not a person at snapshot (invalid VePassport): skip immediately, reduce expected actions
+3. Navigator dead now (exited/deactivated after snapshot): skip immediately, reduce expected actions
+4. Navigator alive + preferences/decision set: vote normally
+5. Navigator alive + no preferences/decision + skip window reached (2 hours before deadline): skip
+6. Navigator alive + no preferences/decision + skip window not reached: revert (relayer retries later)
 
 ## Rewards and Fees
 
@@ -128,3 +129,7 @@ At round start, `XAllocationVoting.startNewRound` computes expected actions:
 * `governanceUsers = totalDelegatedCitizens` (citizens only — relayers don't cast governance votes for auto-voters)
 
 Per-user skip tracking in RelayerRewardsPool prevents deadlocks: when all vote actions for a user are skipped, the claim action is auto-reduced too.
+
+### Passport Validation
+
+`castNavigatorVote` in both XAllocationVoting and B3TRGovernor validates the citizen's passport (personhood) at the round/proposal snapshot. If the citizen is not a valid person at that snapshot, the vote is **skipped** (not reverted) — the relayer pool expected actions are reduced and a skip event is emitted. This matches the existing auto-voting skip behavior.
