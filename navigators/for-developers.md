@@ -92,13 +92,16 @@ Navigator fees are locked for a configurable number of rounds (default 4) before
 
 ### Minor Slashing
 
-Anyone can call `reportRoundInfractions(navigator, roundId, proposalIds)` after a round ends. The contract checks all five infraction types on-chain:
+Anyone can call `reportRoundInfractions(navigator, roundId, proposalIds)` after a round ends. The contract checks all six infraction types on-chain:
 
-1. Missed allocation vote
-2. Late preferences (set after cutoff)
-3. Stale preferences (no update for 3+ rounds)
-4. Missed report (must submit every N rounds)
-5. Missed governance vote
+1. Missed allocation vote (requires delegations at round snapshot)
+2. Late preferences — set after cutoff (requires delegations)
+3. Stale preferences — no update for 3+ rounds (requires delegations)
+4. Missed report — must submit every N rounds (requires delegations)
+5. Missed governance vote (requires delegations)
+6. **Below minimum stake** — stake was below `minStake` at round snapshot (applies **regardless of delegations**)
+
+Infractions 1-5 are only evaluated if the navigator had active delegations at the round snapshot. Infraction 6 applies to all registered navigators — maintaining the minimum stake is an unconditional duty.
 
 If any infraction is found, one minor slash is applied: **5% of current remaining stake** (compounding). At most one slash per round.
 

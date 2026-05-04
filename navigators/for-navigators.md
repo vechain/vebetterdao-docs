@@ -24,6 +24,7 @@ Registration is permissionless — anyone who meets the minimum stake can regist
 
 You are expected to:
 
+* **Maintain your stake above the minimum** at all times — if your stake drops below minimum (e.g. due to slashing), you must top it up immediately or face further penalties
 * Set allocation preferences each round
 * Vote on governance proposals relevant to your citizens
 * Submit a report at least once every 2 rounds
@@ -53,7 +54,8 @@ If you miss duties, anyone can report the round on-chain:
 * If a round is validly reported, you can be slashed **5%** of your remaining stake for that round
 * Typical minor issues include: missed votes, missed reports, stale preferences, or late preferences
 * Even if multiple issues happened in the same round, only one 5% penalty is applied
-* If your stake falls below minimum, you stay visible but cannot accept new delegations until topped up
+* **Being below minimum stake is itself a slashable infraction** — if your stake drops below minimum (e.g. from a previous slash) and you don't top it up before the round ends, you will be slashed again
+* While below minimum stake, you cannot accept new delegations
 
 For severe misconduct, governance can remove you and slash up to 100% of stake plus locked fees.
 
