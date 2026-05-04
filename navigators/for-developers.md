@@ -99,11 +99,29 @@ Anyone can call `reportRoundInfractions(navigator, roundId, proposalIds)` after 
 3. Stale preferences — no update for 3+ rounds (requires delegations)
 4. Missed report — must submit every N rounds (requires delegations)
 5. Missed governance vote (requires delegations)
-6. **Below minimum stake** — stake was below `minStake` at round snapshot (applies **regardless of delegations**)
+6. **Below minimum stake** — stake was below `minStake` at round start AND still below at round end (applies **regardless of delegations**)
 
-Infractions 1-5 are only evaluated if the navigator had active delegations at the round snapshot. Infraction 6 applies to all registered navigators — maintaining the minimum stake is an unconditional duty.
+Infractions 1-5 are only evaluated if the navigator had active delegations at the round snapshot. Infraction 6 applies to all registered navigators — maintaining the minimum stake is an unconditional duty. The two-checkpoint check (start + end) gives navigators **one full round to recover** after a slash drops their stake.
 
 If any infraction is found, one minor slash is applied: **5% of current remaining stake** (compounding). At most one slash per round.
+
+#### Below minimum stake — timing example
+
+Assume `minStake = 50,000 B3TR` and minor slash = 5%.
+
+| Round | Stake at start | What happens | Stake at end | Slashed for belowMinStake? |
+|-------|---------------|--------------|-------------|---------------------------|
+| R3 | 50,000 | Slashed 5% for missed duties | 47,500 | No — was at minimum at start |
+| R4 | 47,500 | Navigator tops up 3,000 mid-round | 50,500 | No — was below at start but recovered by end |
+| R5 | 50,500 | Normal operation | 50,500 | No — above minimum |
+
+If the navigator does **not** recover:
+
+| Round | Stake at start | What happens | Stake at end | Slashed for belowMinStake? |
+|-------|---------------|--------------|-------------|---------------------------|
+| R3 | 50,000 | Slashed 5% for missed duties | 47,500 | No — was at minimum at start |
+| R4 | 47,500 | No action taken | 47,500 | **Yes** — below at start and end |
+| R5 | 45,125 | Slashed again (cascading) | 42,869 | **Yes** — still below |
 
 ### Major Slashing
 

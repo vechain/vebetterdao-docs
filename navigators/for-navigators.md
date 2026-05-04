@@ -54,7 +54,7 @@ If you miss duties, anyone can report the round on-chain:
 * If a round is validly reported, you can be slashed **5%** of your remaining stake for that round
 * Typical minor issues include: missed votes, missed reports, stale preferences, or late preferences
 * Even if multiple issues happened in the same round, only one 5% penalty is applied
-* **Being below minimum stake is itself a slashable infraction** — if your stake drops below minimum (e.g. from a previous slash) and you don't top it up before the round ends, you will be slashed again
+* **Being below minimum stake is itself a slashable infraction** — if your stake drops below minimum (e.g. from a previous slash), you have **until the end of the round** to top it up. If you don't recover by round end, you will be slashed again. Example: slashed in round 3 (50K → 47.5K), you have all of round 4 to add stake. If you top up to 50K+ during round 4, no penalty. If you don't, you get slashed again at round 4 end.
 * While below minimum stake, you cannot accept new delegations
 
 For severe misconduct, governance can remove you and slash up to 100% of stake plus locked fees.
