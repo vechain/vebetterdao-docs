@@ -172,6 +172,16 @@ The pool accumulates fees collected from voter rewards when users participate th
 
 `Address: 0x34b56f892c9e977b9ba2e43ba64c27d368ab3c86`
 
+## NavigatorRegistry
+
+This contract manages the Navigator delegation system for VeBetterDAO. Navigators are professional voting delegates who stake B3TR to vote on behalf of citizens in both allocation rounds and governance proposals. Staked B3TR is converted to VOT3 under the hood and counts as the navigator's personal voting power.
+
+The contract handles navigator registration with B3TR staking, citizen delegation with checkpointed VOT3 amounts, voting preferences and governance decisions, a 20% fee on managed rewards (locked for 4 rounds), automatic minor slashing for missed duties, and a governance-driven exit/deactivation process with lazy invalidation of citizen delegations.
+
+_Upgradeable via UUPS proxy pattern. Logic split into 6 external libraries (NavigatorStakingUtils, NavigatorDelegationUtils, NavigatorVotingUtils, NavigatorFeeUtils, NavigatorSlashingUtils, NavigatorLifecycleUtils) for contract size optimization. Uses ERC-7201 namespaced storage._
+
+`Address: 0xef238e33fc78ecc79beaf8386254a0fc67d048e0`
+
 ## Libraries
 
 Some contracts (eg: B3TRGovernor) store their logic inside libraries to optimize the contract size. The following is the list of libraries we created and the addresses they are deployed to.
@@ -226,7 +236,7 @@ We are using UUPS proxy for our upgradeable contracts. You can read more about i
 
 {% embed url="https://docs.openzeppelin.com/upgrades-plugins/1.x/writing-upgradeable" %}
 
-<table data-header-hidden><thead><tr><th width="211"></th><th width="182"></th><th></th></tr></thead><tbody><tr><td><strong>Contract</strong></td><td><strong>Upgradable</strong></td><td><strong>Authoriser</strong></td></tr><tr><td>B3TR</td><td>No</td><td></td></tr><tr><td>B3TRProxy</td><td>No</td><td></td></tr><tr><td>B3TRGovernor</td><td>Yes</td><td>Governance OR DEFAULT_ADMIN</td></tr><tr><td>Emissions</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>GalaxyMember</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>NodeManagement (legacy)</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>Timelock</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>Treasury</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>VOT3</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>VoterRewards</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>X2EarnApps</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>X2EarnCreators</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>X2EarnRewardsPool</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>XAllocationPool</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>XAllocationVoting</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>B3TR Multisig</td><td>No</td><td></td></tr><tr><td>GrantsManager</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>RelayersRewardsPool</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>DynamicBaseAllocationPool</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>RelayerRewardsPool</td><td>Yes</td><td>UPGRADER_ROLE</td></tr></tbody></table>
+<table data-header-hidden><thead><tr><th width="211"></th><th width="182"></th><th></th></tr></thead><tbody><tr><td><strong>Contract</strong></td><td><strong>Upgradable</strong></td><td><strong>Authoriser</strong></td></tr><tr><td>B3TR</td><td>No</td><td></td></tr><tr><td>B3TRProxy</td><td>No</td><td></td></tr><tr><td>B3TRGovernor</td><td>Yes</td><td>Governance OR DEFAULT_ADMIN</td></tr><tr><td>Emissions</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>GalaxyMember</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>NodeManagement (legacy)</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>Timelock</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>Treasury</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>VOT3</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>VoterRewards</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>X2EarnApps</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>X2EarnCreators</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>X2EarnRewardsPool</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>XAllocationPool</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>XAllocationVoting</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>B3TR Multisig</td><td>No</td><td></td></tr><tr><td>GrantsManager</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>RelayersRewardsPool</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>DynamicBaseAllocationPool</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>RelayerRewardsPool</td><td>Yes</td><td>UPGRADER_ROLE</td></tr><tr><td>NavigatorRegistry</td><td>Yes</td><td>UPGRADER_ROLE</td></tr></tbody></table>
 
 #### Library updates
 

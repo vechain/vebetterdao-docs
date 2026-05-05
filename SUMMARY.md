@@ -16,6 +16,13 @@
 * [Roles And Permissions](vebetter/roles-and-permissions.md)
 * [Trust Assumptions](vebetter/trust-assumptions.md)
 
+## Navigators
+
+* [Navigators](navigators/README.md)
+* [For Citizens](navigators/for-citizens.md)
+* [For Navigators](navigators/for-navigators.md)
+* [For Developers](navigators/for-developers.md)
+
 ## Developer Guides
 
 * [Get Started](developer-guides/get-started.md)

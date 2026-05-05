@@ -32,7 +32,8 @@ Testnet contract addresses:
 "X2EarnApps": "0x0b54a094b877a25bdc95b4431eaa1e2206b1ddfe",
 "X2EarnRewardsPool": "0x2d2a2207c68a46fc79325d7718e639d1047b0d8b",
 "XAllocationPool": "0x6f7b4bc19b4dc99005b473b9c45ce2815bbe7533",
-"XAllocationVoting": "0x8800592c463f0b21ae08732559ee8e146db1d7b2"
+"XAllocationVoting": "0x8800592c463f0b21ae08732559ee8e146db1d7b2",
+"NavigatorRegistry": "0x15a38b65f26bdbca50addf3865732613a45bbc00"
 ```
 
 ## Local node
