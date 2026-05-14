@@ -4,6 +4,18 @@
 
 You need to call this contract to distribute the rewards.
 
+### Round Attribution
+
+By default, when you distribute a reward, the action is recorded in the **current round**. If your app allows users to accumulate actions and claim them later, the action will be attributed to the round when the claim happens — not when the action was performed.
+
+To attribute actions to the correct round, use the `ForRound` variants of the distribution functions. These accept an additional `actionRound` parameter (the round ID when the action was actually performed):
+
+- `distributeRewardForRound`
+- `distributeRewardWithProofForRound`
+- `distributeRewardWithProofAndMetadataForRound`
+
+The `actionRound` must be greater than 0.
+
 {% content-ref url="javascript.md" %}
 [javascript.md](javascript.md)
 {% endcontent-ref %}
