@@ -224,6 +224,15 @@ people
 biodiversity
 ```
 
+## Round Attribution
+
+All distribution functions have `ForRound` variants that accept an additional `actionRound` parameter. Use these when actions are claimed in a different round than when they were performed:
+
+- `distributeRewardWithProofForRound(..., actionRound)`
+- `distributeRewardWithProofAndMetadataForRound(..., actionRound)`
+
+The `actionRound` is the round ID when the sustainable action was actually performed. This ensures the action is correctly attributed for scoring and challenges.
+
 {% hint style="success" %}
 If you want to store additional data beyond impacts or proofs, you might consider using the reward metadata function, which allows you to include other meaningful extra information. [Go to Reward Metadata Docs](reward-metadata.md)
 {% endhint %}

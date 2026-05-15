@@ -143,3 +143,7 @@ This event allows off-chain systems to listen for and process reward distributio
 * **Optional Usage**: The `metadata` is optional. If your application doesn't require additional context, you can continue using the existing `distributeRewardWithProof` function.
 * **Standardization**: Adhere to the suggested metadata structure to ensure consistency and facilitate seamless data integration across the ecosystem.
 * **Data Validation**: Implement validation checks to ensure the metadata JSON is correctly formatted and contains relevant information before invoking the distribution function.
+
+### Round Attribution
+
+If you need to attribute the action to a specific round, use `distributeRewardWithProofAndMetadataForRound` which accepts an additional `actionRound` parameter at the end. See [Sustainability Proofs](sustainability-proof-and-impacts.md#round-attribution) for details.

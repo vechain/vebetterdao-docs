@@ -57,6 +57,29 @@ contract MySustainableAppContract {
 }
 </code></pre>
 
+### Attributing Actions to a Specific Round
+
+If your app allows users to accumulate actions and claim later, use `distributeRewardForRound` to attribute the action to the round it was performed in:
+
+<pre class="language-solidity"><code class="lang-solidity">
+    function claimReward(uint256 _actionId, uint256 _actionRound) external {
+        // ... some code to check if the action is valid and user can claim
+
+        // Attribute the action to the round it was performed in
+        x2EarnRewardsPool.distributeRewardForRound(
+            VBD_APP_ID,
+            actions[_actionId].rewardAmount,
+            msg.sender,
+            "",
+            _actionRound // the round when the action was actually performed
+        );
+
+        rewardClaimed[_actionId] = true;
+
+        emit RewardClaimed(_actionId, msg.sender);
+    }
+</code></pre>
+
 {% hint style="warning" %}
 The address of this contract must be set as a **distributor** of your APP in order to move funds from the X2EarnRewardsPool contract.
 
