@@ -34,20 +34,39 @@ contract MySustainableAppContract {
     /**
      * @notice A function that allows a user to claim a reward for a specific
      * sustainable action that they performed.
-     * 
-     * IMPORTANT: the address of this contract must be set as a distributor 
-     * of your APP in order to move funds from the X2EarnRewardsPool contract. 
+     *
+     * Since V9 the proof arrays are mandatory on distributeRewardWithProof —
+     * empty arrays revert with "X2EarnRewardsPool: proof is mandatory".
+     *
+     * IMPORTANT: the address of this contract must be set as a distributor
+     * of your APP in order to move funds from the X2EarnRewardsPool contract.
      * You can set this on the VeBetterDAO governance app.
      */
     function claimReward(uint256 _actionId) external {
         // ... some code to check if the action is valid and user can claim
 
-        // If distributeReward fails, it will revert
-        x2EarnRewardsPool.distributeReward(
+        string[] memory proofTypes = new string[](1);
+        proofTypes[0] = "link";
+
+        string[] memory proofValues = new string[](1);
+        proofValues[0] = actions[_actionId].proofUrl;
+
+        string[] memory impactCodes = new string[](1);
+        impactCodes[0] = "waste_mass";
+
+        uint256[] memory impactValues = new uint256[](1);
+        impactValues[0] = actions[_actionId].impact;
+
+        // If distributeRewardWithProof fails, it will revert
+        x2EarnRewardsPool.distributeRewardWithProof(
             VBD_APP_ID,
             actions[_actionId].rewardAmount,
             msg.sender, // this is the user calling the claimReward function
-            "" // proof and impacts not provided
+            proofTypes,
+            proofValues,
+            impactCodes,
+            impactValues,
+            "User performed a sustainable action on my app"
         );
 
         rewardClaimed[_actionId] = true;
@@ -56,6 +75,23 @@ contract MySustainableAppContract {
     }
 }
 </code></pre>
+
+### Distributing a Bonus / Non-Sustainable Reward (V9+)
+
+Use `distributeNonProofReward` for rewards that should **not** register a passport action — endorser payouts, leaderboard prizes, streak bonuses, cashback, referral payouts, etc. The contract emits `NonProofRewardDistributed` with a typed `NonProofRewardCategory` so indexers can exclude the payout from personhood signals.
+
+<pre class="language-solidity"><code class="lang-solidity">    function payLeaderboardPrize(address winner, uint256 amount, uint8 place) external onlyAdmin {
+        x2EarnRewardsPool.distributeNonProofReward(
+            VBD_APP_ID,
+            amount,
+            winner,
+            IX2EarnRewardsPool.NonProofRewardCategory.Leaderboard,
+            string.concat("Week ", Strings.toString(currentWeek), " leaderboard - place ", Strings.toString(place))
+        );
+    }
+</code></pre>
+
+Available categories: `Endorser`, `Leaderboard`, `Streak`, `Cashback`, `Referral`, `Other`.
 
 ### Attributing Actions to a Specific Round
 
