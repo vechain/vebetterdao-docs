@@ -4,6 +4,13 @@ Setup a lambda function or an endpoint that will send the B3TR tokens to the use
 
 We will use [@vechain/sdk-network](https://docs.vechain.org/developer-resources/sdks-and-providers/sdk) and [@vechain/vebetterdao-contracts](https://github.com/vechain/vebetterdao-contracts) to interact with VeBetter's `X2EarnRewardsPool` contract to distribute the rewards.
 
+{% hint style="warning" %}
+Since V9, the examples below using `distributeRewardDeprecated` only register a passport action without a typed proof and are kept for backward compatibility. For new integrations use:
+
+- `distributeRewardWithProof` / `distributeRewardWithProofAndMetadata` for **sustainable** actions (proof is mandatory — see [Sustainability Proof and Impacts](../sustainability-proof-and-impacts.md))
+- `distributeNonProofReward` for **bonus / non-sustainable** payouts (endorser, leaderboard, streak, cashback, referral, other) — these do **not** register a passport action
+{% endhint %}
+
 Run the following command to install the packages:
 
 ```shell
@@ -151,6 +158,48 @@ function rewardUser() {
 ```
 {% endtab %}
 {% endtabs %}
+
+### Distributing a Bonus / Non-Sustainable Reward (V9+)
+
+`distributeNonProofReward` transfers B3TR to a receiver **without** registering a passport action. Use it for endorser payouts, leaderboard prizes, streak bonuses, cashback, referral payouts, etc. The contract emits a dedicated `NonProofRewardDistributed` event with a typed `NonProofRewardCategory` so indexers can exclude the payout from personhood signals.
+
+```javascript
+import { ProviderInternalHDWallet, ThorClient, VeChainProvider, VeChainSigner } from "@vechain/sdk-network"
+import { X2EarnRewardsPool } from "@vechain/vebetterdao-contracts"
+
+// NonProofRewardCategory enum values (must match the IX2EarnRewardsPool interface order)
+const NonProofRewardCategory = {
+  Endorser: 0,
+  Leaderboard: 1,
+  Streak: 2,
+  Cashback: 3,
+  Referral: 4,
+  Other: 5,
+}
+
+const thor = ThorClient.at(process.env.NODE_URL || "")
+const provider = new VeChainProvider(
+  thor,
+  new ProviderInternalHDWallet(process.env.REWARD_SENDER_MNEMONIC?.split(" ") || []),
+)
+const rootSigner = await provider.getSigner()
+
+const x2EarnRewardsPoolContract = thor.contracts.load(
+  process.env.X2EARN_REWARDS_POOL_ADDRESS || "",
+  X2EarnRewardsPool.abi,
+  rootSigner as VeChainSigner,
+)
+
+const tx = await x2EarnRewardsPoolContract.transact.distributeNonProofReward(
+  process.env.VEBETTERDAO_APP_ID || "",
+  amount,
+  receiverAddress,
+  NonProofRewardCategory.Leaderboard,
+  "Week 12 leaderboard - 3rd place",
+)
+
+await tx.wait()
+```
 
 {% hint style="info" %}
 ### Sustainability Proof

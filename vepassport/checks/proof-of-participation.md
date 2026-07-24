@@ -8,6 +8,10 @@ The points are then summed, generating a cumulative score for the user and if it
 Only the X2EarnRewardsPool contract can call the `registerAction` function, this means that if an app is not using the X2EarnRewardsPool contract to distribute their rewards then that action is never taken into account.
 {% endhint %}
 
+{% hint style="info" %}
+**Since `X2EarnRewardsPool` V9**, only the **sustainable** distribution paths (`distributeRewardWithProof`, `distributeRewardWithProofAndMetadata` and their `*ForRound` variants — all of which now require a non-empty proof) register a passport action. The new `distributeNonProofReward` entrypoint — used for endorser payouts, leaderboard prizes, streak bonuses, cashback, referral payouts, etc. — emits a separate `NonProofRewardDistributed` event and does **not** contribute to Proof of Participation. The legacy `distributeReward` / `distributeRewardDeprecated*` entrypoints are kept for backward compatibility and still register actions, but new integrations should not use them.
+{% endhint %}
+
 ## Apps security levels
 
 When an action is registered a score is being assigned to the user based on the security level of the app. The VeBetter team will be responsible for initially analyzing apps and setting the security score for each app and will open this power to the entire DAO in the future.
