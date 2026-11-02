@@ -34,6 +34,10 @@ When calling this function it is mandatory to provide at least proof or impact, 
 
 The transaction will revert also if something is wrong with the data you pass.
 
+{% hint style="warning" %}
+**Since `X2EarnRewardsPool` V9**, `proofTypes` and `proofValues` are **mandatory** (must be non-empty) on every `distributeRewardWithProof*` entrypoint — empty arrays revert with `"X2EarnRewardsPool: proof is mandatory"`. If your reward is a bonus / non-sustainable payout (endorser, leaderboard, streak, cashback, referral) use [`distributeNonProofReward`](reward-distribution/README.md#sustainable-vs-bonus-rewards-v9) instead.
+{% endhint %}
+
 ## Examples
 
 To provide proofs and impacts you need to distribute the rewards through the X2EarnRewardsPool contract with the following function:
