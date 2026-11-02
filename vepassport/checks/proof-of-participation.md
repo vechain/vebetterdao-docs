@@ -27,7 +27,7 @@ Per each account, a score is calculated based on the points he gathered until no
 
 The formula to calculate the score takes into account 2 arguments:
 
-* **Amount of rounds to use**: currently set to 12, which means that the contract will sum all the points gathered during the last 12 weeks;
+* **Amount of rounds to use**: currently set to 4, which means that the contract will sum all the points gathered during the last 4 weeks;
 * **Decay percentage**: currently set to 0, which reduces the points of previous rounds (eg: if set to 20%, the score calculated until the previous round will be reduced by 20% in the next, in a linear fashion).
 
 This approach ensures that a person must continue to participate in the VeBetter ecosystem and use the apps to maintain eligibility for voting.
@@ -38,7 +38,7 @@ The following is the current implemented formula to calculate the cumulative sco
 
 ## Threshold
 
-The threshold an address must meet to be considered a person is **300 points accumulated during the last 12 rounds**.
+The threshold an address must meet to be considered a person is **400 points accumulated during the last 4 rounds**.
 
 ## Endpoints
 
